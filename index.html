@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Divorce Party – egy új kezdet ünnepe. Privát, stílusos, felszabadító események szervezése csomagokkal és partner szolgáltatókkal." />
+  <title>Divorce Party – Ünnepeld az új kezdetet</title>
+
+  <style>
+    :root{
+      --bg:#0b0c10;
+      --card:#12141c;
+      --muted:#9aa3b2;
+      --text:#e9eef7;
+      --brand:#ff4d6d;
+      --brand2:#6ee7ff;
+      --border: rgba(255,255,255,.10);
+      --shadow: 0 14px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue";
+      background: radial-gradient(900px 600px at 20% 0%, rgba(255,77,109,.22), transparent 60%),
+                  radial-gradient(900px 600px at 80% 20%, rgba(110,231,255,.18), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:1100px; margin:0 auto; padding:0 18px}
+    .pill{display:inline-flex; gap:8px; align-items:center; padding:8px 12px; border:1px solid var(--border); border-radius:999px; color:var(--muted); background:rgba(255,255,255,.04)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 16px; border-radius:999px; border:1px solid var(--border);
+      background:linear-gradient(135deg, rgba(255,77,109,.95), rgba(255,77,109,.65));
+      color:white; font-weight:650;
+      box-shadow: 0 10px 30px rgba(255,77,109,.25);
+      transition: transform .12s ease, filter .12s ease;
+    }
+    .btn:hover{transform:translateY(-1px); filter:saturate(1.08)}
+    .btn.secondary{
+      background:rgba(255,255,255,.06);
+      box-shadow:none;
+      color:var(--text);
+    }
+
+    /* Navbar */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(11,12,16,.65);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 0;
+    }
+    .brand{
+      display:flex; gap:10px; align-items:center;
+      font-weight:800; letter-spacing:.2px;
+    }
+    .logoMark{
+      width:36px; height:36px; border-radius:12px;
+      background: conic-gradient(from 200deg, var(--brand), var(--brand2), var(--brand));
+      box-shadow: 0 10px 30px rgba(110,231,255,.15);
+    }
+    .navlinks{
+      display:flex; gap:16px; align-items:center;
+    }
+    .navlinks a{
+      color:var(--muted);
+      padding:10px 10px; border-radius:12px;
+      transition: background .12s ease, color .12s ease;
+    }
+    .navlinks a:hover{background:rgba(255,255,255,.06); color:var(--text)}
+    .menuBtn{
+      display:none;
+      background:rgba(255,255,255,.06);
+      border:1px solid var(--border);
+      color:var(--text);
+      border-radius:12px;
+      padding:10px 12px;
+    }
+
+    /* Hero */
+    .hero{
+      padding:54px 0 28px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    .heroCard{
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border-radius: calc(var(--radius) + 6px);
+      box-shadow: var(--shadow);
+      padding:28px;
+      overflow:hidden;
+      position:relative;
+    }
+    .heroCard::after{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(600px 260px at 10% 10%, rgba(255,77,109,.18), transparent 60%),
+                  radial-gradient(700px 260px at 90% 10%, rgba(110,231,255,.16), transparent 60%);
+      pointer-events:none;
+    }
+    .heroContent{position:relative; z-index:1}
+    h1{
+      margin:14px 0 10px;
+      font-size: clamp(34px, 4.2vw, 52px);
+      line-height:1.05;
+      letter-spacing:-.6px;
+    }
+    .sub{
+      color:var(--muted);
+      font-size: 16px;
+      line-height:1.6;
+      max-width: 62ch;
+    }
+    .ctaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px}
+    .miniGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:18px;
+    }
+    .mini{
+      position:relative; z-index:1;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      border-radius: 16px;
+      padding:12px;
+      color:var(--muted);
+      font-size: 14px;
+    }
+    .mini b{color:var(--text)}
+    .heroSide{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      border-radius: calc(var(--radius) + 6px);
+      padding:18px;
+      box-shadow: var(--shadow);
+    }
+    .heroImg{
+      width:100%;
+      aspect-ratio: 4/3;
+      border-radius: 18px;
+      border:1px solid var(--border);
+      overflow:hidden;
+      background:
+        radial-gradient(450px 220px at 30% 30%, rgba(255,77,109,.30), transparent 60%),
+        radial-gradient(450px 220px at 70% 50%, rgba(110,231,255,.25), transparent 60%),
+        rgba(255,255,255,.02);
+      display:flex; align-items:center; justify-content:center;
+      position:relative;
+    }
+    .heroImg span{
+      color:rgba(233,238,247,.7);
+      font-weight:700;
+      border:1px dashed rgba(255,255,255,.25);
+      padding:10px 12px; border-radius:12px;
+      background:rgba(0,0,0,.18);
+    }
+    .sideText{color:var(--muted); font-size:14px; line-height:1.6; margin-top:12px}
+    .sideList{margin:12px 0 0; padding:0; list-style:none; display:grid; gap:10px}
+    .sideList li{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:12px;
+    }
+
+    /* Sections */
+    section{padding:34px 0}
+    .sectionHead{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
+      margin-bottom:14px;
+    }
+    h2{margin:0; font-size:22px; letter-spacing:-.2px}
+    .hint{color:var(--muted); font-size:14px; line-height:1.6}
+
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    .card{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      border-radius: var(--radius);
+      padding:16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.22);
+    }
+    .card h3{margin:0 0 8px; font-size:16px}
+    .card p{margin:0; color:var(--muted); font-size:14px; line-height:1.6}
+    .tagRow{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+    .tag{font-size:12px; color:rgba(233,238,247,.75); border:1px solid var(--border); background:rgba(255,255,255,.04); padding:6px 10px; border-radius:999px}
+
+    /* Packages */
+    .packages{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
+    .price{
+      display:flex; align-items:baseline; gap:8px; margin:10px 0 12px;
+      font-size: 26px; font-weight:900;
+    }
+    .price small{font-size:12px; color:var(--muted); font-weight:600}
+    .bullets{margin:0; padding-left:18px; color:var(--muted); font-size:14px; line-height:1.7}
+    .packageTop{display:flex; align-items:center; justify-content:space-between; gap:10px}
+    .badge{
+      font-size:12px; font-weight:800;
+      padding:6px 10px; border-radius:999px;
+      border:1px solid rgba(255,77,109,.35);
+      background: rgba(255,77,109,.12);
+      color: rgba(255,255,255,.9);
+    }
+
+    /* Partners */
+    .partners{display:grid; grid-template-columns: repeat(2, 1fr); gap:14px}
+    .partnerRow{display:flex; gap:12px; align-items:flex-start}
+    .partnerLogo{
+      width:54px; height:54px; border-radius:16px;
+      border:1px solid var(--border);
+      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      display:flex; align-items:center; justify-content:center;
+      flex:0 0 auto;
+      font-weight:900; color:rgba(233,238,247,.75);
+    }
+
+    /* Gallery */
+    .gallery{display:grid; grid-template-columns: repeat(4, 1fr); gap:10px}
+    .shot{
+      border-radius:16px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      aspect-ratio: 1/1;
+      display:flex; align-items:center; justify-content:center;
+      color:rgba(233,238,247,.6);
+      font-weight:800;
+      overflow:hidden;
+      position:relative;
+    }
+    .shot::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(240px 140px at 20% 25%, rgba(255,77,109,.25), transparent 60%),
+        radial-gradient(240px 140px at 70% 70%, rgba(110,231,255,.22), transparent 60%);
+      opacity:.9;
+    }
+    .shot span{position:relative; z-index:1; border:1px dashed rgba(255,255,255,.25); padding:8px 10px; border-radius:12px; background:rgba(0,0,0,.18)}
+
+    /* Contact */
+    .contactGrid{display:grid; grid-template-columns: 1fr 1fr; gap:14px}
+    .contactBox a{
+      display:flex; justify-content:space-between; align-items:center; gap:10px;
+      padding:12px 12px; border-radius:16px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      margin-top:10px;
+      color:rgba(233,238,247,.92);
+    }
+    .contactBox a span{color:var(--muted); font-size:13px}
+    .note{color:var(--muted); font-size:13px; line-height:1.6; margin:10px 0 0}
+
+    footer{
+      padding:26px 0 40px;
+      border-top:1px solid var(--border);
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .heroGrid{grid-template-columns: 1fr}
+      .grid3{grid-template-columns: 1fr}
+      .packages{grid-template-columns: 1fr}
+      .partners{grid-template-columns: 1fr}
+      .gallery{grid-template-columns: repeat(2, 1fr)}
+      .contactGrid{grid-template-columns: 1fr}
+      .navlinks{display:none}
+      .menuBtn{display:inline-flex}
+      .navlinks.mobile{
+        display:flex;
+        flex-direction:column;
+        align-items:stretch;
+        gap:6px;
+        padding:10px 0 14px;
+      }
+      .navlinks.mobile a{padding:12px 10px}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <div class="logoMark" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:14px; color:var(--muted); font-weight:700; letter-spacing:.3px">DIVORCE PARTY</div>
+            <div style="font-size:14px; font-weight:900">Ünnepeld az új kezdetet</div>
+          </div>
+        </div>
+
+        <button class="menuBtn" id="menuBtn" aria-label="Menü">☰ Menü</button>
+
+        <nav class="navlinks" id="navLinks">
+          <a href="#mit-kapsz">Mit kapsz</a>
+          <a href="#csomagok">Csomagok</a>
+          <a href="#partnerek">Partnerek</a>
+          <a href="#galeria">Galéria</a>
+          <a href="#kapcsolat">Kapcsolat</a>
+          <a class="btn" href="#kapcsolat">Foglalás</a>
+        </nav>
+      </div>
+      <nav class="navlinks mobile" id="navLinksMobile" style="display:none">
+        <a href="#mit-kapsz">Mit kapsz</a>
+        <a href="#csomagok">Csomagok</a>
+        <a href="#partnerek">Partnerek</a>
+        <a href="#galeria">Galéria</a>
+        <a href="#kapcsolat">Kapcsolat</a>
+        <a class="btn" href="#kapcsolat">Foglalás</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <div class="container hero" id="top">
+      <div class="heroGrid">
+        <div class="heroCard">
+          <div class="heroContent">
+            <div class="pill">✨ Privát esemény • 🥂 Stílusos hangulat • 🎉 Új fejezet</div>
+            <h1>Divorce Party, ami nem ciki – hanem felszabadító.</h1>
+            <p class="sub">
+              Nem a múltról szól, hanem arról, hogy <b>újra te vagy a főszereplő</b>.
+              Mi megcsináljuk a hangulatot, a programot, a helyszínt és a részleteket – te csak érkezz és ünnepelj.
+            </p>
+
+            <div class="ctaRow">
+              <a class="btn" href="#kapcsolat">📩 Kérj időpontot / konzultációt</a>
+              <a class="btn secondary" href="#csomagok">📦 Csomagok megtekintése</a>
+            </div>
+
+            <div class="miniGrid">
+              <div class="mini"><b>Rugalmas létszám</b><br/> 6–30 fő, igény szerint</div>
+              <div class="mini"><b>Diszkrét szervezés</b><br/> privát helyszínek & programok</div>
+              <div class="mini"><b>Full service</b><br/> dekor, fotó, DJ, italkínálat</div>
+              <div class="mini"><b>Helyszín</b><br/> <span style="color:var(--muted)">[város / régió]</span> + kiszállás</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="heroSide">
+          <div class="heroImg" role="img" aria-label="Hangulatkép helye">
+            <span>IDE JÖN A FŐ KÉPED</span>
+          </div>
+          <p class="sideText">
+            “Kulturált, vicces, kicsit pimasz – de mindig ízléses.”
+            <br/>Ha a cél: <b>újrakezdés</b>, mi keretet adunk hozzá.
+          </p>
+          <ul class="sideList">
+            <li><b>60 perc ingyenes egyeztetés</b><br><span class="hint">koncepció + ajánlat 24–48 órán belül</span></li>
+            <li><b>Átlátható csomagok</b><br><span class="hint">fix alap + választható extrák</span></li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+
+    <!-- WHAT YOU GET -->
+    <section id="mit-kapsz">
+      <div class="container">
+        <div class="sectionHead">
+          <div>
+            <h2>Mit ajánlunk?</h2>
+            <div class="hint">Egy egyedi esemény, ahol a fókusz az élményen, nem a “sztorin” van.</div>
+          </div>
+        </div>
+
+        <div class="grid3">
+          <div class="card">
+            <h3>🎭 Program & élmény</h3>
+            <p>Játékos, felszabadító programelemek (kvíz, “closing chapter” rituálé, mini-ceremónia), opcionális tematikával.</p>
+            <div class="tagRow">
+              <span class="tag">Tematikus est</span><span class="tag">MC / Host</span><span class="tag">Meglepi blokkok</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>🍸 Helyszín & vendéglátás</h3>
+            <p>Privát terem / rooftop / lounge, welcome ital, snack/menü – partnerhálózattal, igényre szabva.</p>
+            <div class="tagRow">
+              <span class="tag">Privát helyszínek</span><span class="tag">Italcsomag</span><span class="tag">Catering</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>📸 Hangulat & emlék</h3>
+            <p>Dekor + fotó/videó, fotósarok, “glow-up” stílus – hogy ne csak jó legyen, hanem jól is nézzen ki.</p>
+            <div class="tagRow">
+              <span class="tag">Dekor</span><span class="tag">Fotós</span><span class="tag">DJ / playlist</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PACKAGES -->
+    <section id="csomagok">
+      <div class="container">
+        <div class="sectionHead">
+          <div>
+            <h2>Részvételi csomagok</h2>
+            <div class="hint">Példa csomagok – az árak/elemek teljesen testreszabhatók. (Itt még lehet “tól-ig” ár is.)</div>
+          </div>
+        </div>
+
+        <div class="packages">
+          <div class="card">
+            <div class="packageTop">
+              <h3>STARTER</h3>
+              <span class="badge">Leggyorsabb</span>
+            </div>
+            <div class="price">[xx xxx] Ft <small>/ fő-től</small></div>
+            <ul class="bullets">
+              <li>Helyszín javaslat + foglalási támogatás</li>
+              <li>Alap dekor (asztal / fotósarok elemek)</li>
+              <li>Programváz + ütemezés</li>
+              <li>Kapcsolattartás a partnerekkel</li>
+            </ul>
+            <div class="ctaRow" style="margin-top:14px">
+              <a class="btn secondary" href="#kapcsolat">Kérek ajánlatot</a>
+            </div>
+          </div>
+
+          <div class="card" style="border-color: rgba(255,77,109,.35); background: rgba(255,77,109,.08)">
+            <div class="packageTop">
+              <h3>SIGNATURE</h3>
+              <span class="badge">Legnépszerűbb</span>
+            </div>
+            <div class="price">[xx xxx] Ft <small>/ fő-től</small></div>
+            <ul class="bullets">
+              <li>Teljes szervezés + koordináció aznap</li>
+              <li>Welcome ital + snack csomag</li>
+              <li>Tematikus programelemek (opcionális “ritual”)</li>
+              <li>Fotósarok + kellékek</li>
+            </ul>
+            <div class="ctaRow" style="margin-top:14px">
+              <a class="btn" href="#kapcsolat">Foglalok konzultációt</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="packageTop">
+              <h3>VIP</h3>
+              <span class="badge">Full élmény</span>
+            </div>
+            <div class="price">[xx xxx] Ft <small>/ fő-től</small></div>
+            <ul class="bullets">
+              <li>Prémium helyszín + extra dekor</li>
+              <li>DJ / élőzene opció</li>
+              <li>Fotó + short videó highlight</li>
+              <li>Extrák: bartender show, limó, ajándékcsomag</li>
+            </ul>
+            <div class="ctaRow" style="margin-top:14px">
+              <a class="btn secondary" href="#kapcsolat">VIP ajánlatot kérek</a>
+            </div>
+          </div>
+        </div>
+
+        <p class="note">Megjegyzés: ha céges / baráti “support party”-t szeretnétek, csinálunk alkoholmentes, daytime és “quiet luxury” verziót is.</p>
+      </div>
+    </section>
+
+    <!-- PARTNERS -->
+    <section id="partnerek">
+      <div class="container">
+        <div class="sectionHead">
+          <div>
+            <h2>Partnereink</h2>
+            <div class="hint">Itt tudod felvinni a logókat és rövid leírásokat. (Most placeholder.)</div>
+          </div>
+        </div>
+
+        <div class="partners">
+          <div class="card">
+            <div class="partnerRow">
+              <div class="partnerLogo">LOGO</div>
+              <div>
+                <h3 style="margin:0 0 6px">[Partner neve] – Helyszín</h3>
+                <p>Privát terem / lounge, rugalmas csomagok, diszkrét kiszolgálás. Kapacitás: 10–40 fő.</p>
+                <div class="tagRow">
+                  <span class="tag">Privát foglalás</span><span class="tag">Catering</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="partnerRow">
+              <div class="partnerLogo">LOGO</div>
+              <div>
+                <h3 style="margin:0 0 6px">[Partner neve] – Fotó/Videó</h3>
+                <p>Hangulatfotók, gyors átadás, “highlight” videó opció – igény szerint diszkréten (arc nélküli képekkel).</p>
+                <div class="tagRow">
+                  <span class="tag">Fotó</span><span class="tag">Short reel</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="partnerRow">
+              <div class="partnerLogo">LOGO</div>
+              <div>
+                <h3 style="margin:0 0 6px">[Partner neve] – Dekor</h3>
+                <p>Tematikus dekorcsomagok: elegáns / vicces / minimal / “hot pink” – amit kértek.</p>
+                <div class="tagRow">
+                  <span class="tag">Dekor</span><span class="tag">Fotósarok</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="partnerRow">
+              <div class="partnerLogo">LOGO</div>
+              <div>
+                <h3 style="margin:0 0 6px">[Partner neve] – DJ / Zene</h3>
+                <p>DJ, hangtechnika, vagy “curated playlist” – a hangulatot felépítjük, nem rátoljuk.</p>
+                <div class="tagRow">
+                  <span class="tag">DJ</span><span class="tag">Hangtechnika</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="galeria">
+      <div class="container">
+        <div class="sectionHead">
+          <div>
+            <h2>Galéria / hangulat</h2>
+            <div class="hint">Ide jöhetnek saját képek (pl. 800×800), vagy stock fotók. Most csak helyfoglaló.</div>
+          </div>
+        </div>
+
+        <div class="gallery">
+          <div class="shot"><span>KÉP 1</span></div>
+          <div class="shot"><span>KÉP 2</span></div>
+          <div class="shot"><span>KÉP 3</span></div>
+          <div class="shot"><span>KÉP 4</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="kapcsolat">
+      <div class="container">
+        <div class="sectionHead">
+          <div>
+            <h2>Foglalás / egyeztetés</h2>
+            <div class="hint">Írj vagy hívj – küldünk kérdéssort és 24–48 órán belül jön az ajánlat.</div>
+          </div>
+        </div>
+
+        <div class="contactGrid">
+          <div class="card contactBox">
+            <h3>Elérhetőségek</h3>
+
+            <!-- Cseréld le a sajátodra -->
+            <a href="mailto:hello@divorceparty.hu">
+              <div><b>Email</b><br><span>hello@divorceparty.hu</span></div>
+              <div>↗</div>
+            </a>
+            <a href="tel:+36301234567">
+              <div><b>Telefon</b><br><span>+36 30 123 4567</span></div>
+              <div>↗</div>
+            </a>
+
+            <p class="note">
+              Tipp: ha szeretnél “időpontfoglalót” is, ide be lehet ágyazni egy Google Formot / Calendly linket.
+              (GitHub Pages-en backend nélkül is működik, mert külső szolgáltatás.)
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Gyors ismertető (amit elküldhetsz ügyfélnek)</h3>
+            <p>
+              <b>Divorce Party</b> = stílusos, felszabadító, jól szervezett esemény egy új kezdethez.
+              Kapsz egy átlátható csomagot, partner szolgáltatókat (helyszín, dekor, fotó, zene),
+              és egy programot, ami egyszerre könnyed és emlékezetes.
+            </p>
+
+            <div class="tagRow" style="margin-top:12px">
+              <span class="tag">Diszkrét</span>
+              <span class="tag">Full service</span>
+              <span class="tag">Egyedi tematika</span>
+              <span class="tag">6–30+ fő</span>
+            </div>
+
+            <div class="ctaRow" style="margin-top:14px">
+              <a class="btn" href="mailto:hello@divorceparty.hu?subject=Divorce%20Party%20aj%C3%A1nlatk%C3%A9r%C3%A9s&body=Szia!%0A%0A%C3%89rdekl%C5%91dn%C3%A9k%20Divorce%20Party%20szervez%C3%A9s%20kapcs%C3%A1n.%0A%0A-%20V%C3%A1ros%3A%20%0A-%20D%C3%A1tum%20(t%C3%B3l-ig)%3A%20%0A-%20L%C3%A9tsz%C3%A1m%3A%20%0A-%20St%C3%ADlus%3A%20(eleg%C3%A1ns/vicces/minimal)%0A-%20Extr%C3%A1k%3A%20(fot%C3%B3/DJ/dekor)%0A%0AK%C3%B6szi!">📩 Ajánlatkérés emailben</a>
+              <a class="btn secondary" href="#top">⬆ Vissza a tetejére</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center">
+      <div>© <span id="year"></span> Divorce Party • Minta landing page</div>
+      <div>Instagram / TikTok / Facebook: <span style="opacity:.75">[linkek ide]</span></div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const btn = document.getElementById('menuBtn');
+    const mob = document.getElementById('navLinksMobile');
+    btn?.addEventListener('click', () => {
+      const isOpen = mob.style.display !== 'none';
+      mob.style.display = isOpen ? 'none' : 'flex';
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
